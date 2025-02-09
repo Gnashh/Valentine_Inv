@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+  </head>
+  <body>
+    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
+    <button class="answerButton" onclick="location.href='thankyou.html'">
+      Yes
+    </button>
+    <button class="answerButton" id="noButton">I no wanna o(╥﹏╥)o</button>
+    <br />
+    <img src="please.png" height="498px" width="150px" alt="cat asking question" class="responsive" />
+
+    <script>
+      let noClickCount = 0;
+      const noButton = document.getElementById("noButton");
+
+      const messages = [
+        "Are you sure...! (｡•́︿•̀｡)",
+        "Are you really sure....! (*꒦ິ꒳꒦ີ)",
+        "Think about it...? 😕",
+        "We can talk about this... 😩",
+        "I'm begging you (ಥ﹏ಥ)💖",,
+      ];
+
+      noButton.addEventListener("click", function () {
+        var yesButton = document.querySelector('button[onclick*="thankyou.html"]');
+        var currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+        yesButton.style.fontSize = currentFontSize + 25 + "px"; // Increase font size
+
+        if (noClickCount < messages.length) {
+          this.innerText = messages[noClickCount]; // Change button text
+        }
+
+        noClickCount++;
+
+        if (noClickCount >= messages.length) {
+          this.innerText = "Please...";
+          this.style.backgroundColor = "#ffe3e1";
+          startRunawayMode(); // Make the button run away
+        }
+      });
+
+      function startRunawayMode() {
+        noButton.style.position = "absolute"; // Needed for movement
+        noButton.addEventListener("mouseover", function () {
+          anime({
+            targets: noButton,
+            left: Math.random() * (window.innerWidth - 100) + "px",
+            top: Math.random() * (window.innerHeight - 50) + "px",
+            duration: 50,
+            easing: "easeOutQuad",
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

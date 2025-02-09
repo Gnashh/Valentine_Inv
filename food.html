@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Selection</title>
+    <link rel="stylesheet" href="css/food.css" />
+  </head>
+  <body>
+    <div id="foodquestion">
+      <b>What food would you like to eat?</b>
+    </div>
+
+    <div class="food-selection">
+      <div class="food-item">
+        <img src="food/burgers.jpeg" alt="Burgers and fries" />
+        <label
+          ><input
+            type="radio"
+            name="food"
+            value="Burgers, fries and fried chicken"
+          />
+          Burgers and fries</label
+        >
+      </div>
+      <div class="food-item">
+        <img src="food/koreanfood.jpeg" alt="koreanfood" />
+        <label
+          ><input type="radio" name="food" value="Korean food" /> korean
+          food</label
+        >
+      </div>
+      <div class="food-item">
+        <img src="food/pasta.jpeg" alt="pasta" />
+        <label><input type="radio" name="food" value="pasta" /> pasta</label>
+      </div>
+      <div class="food-item">
+        <img src="food/dimsum.jpg" alt="pizza" />
+        <label><input type="radio" name="food" value="dimsum" /> dimsum</label>
+      </div>
+      <div class="food-item">
+        <img src="food/obi.jpg" alt="salad" />
+        <label><input type="radio" name="food" value="obihiro" /> obihiroo</label>
+      </div>
+      <div class="food-item">
+        <img src="food/ayce.jpeg" alt="steak" />
+        <label><input type="radio" name="food" value="AYCE" /> AYCE</label>
+      </div>
+      <div class="food-item">
+        <img src="food/sushi.jpeg" alt="sushi" />
+        <label><input type="radio" name="food" value="sushi" /> sushi</label>
+      </div>
+    </div>
+    
+    <button class="button" onclick="saveSelectionAndContinue()">Continue Hihihhh...</button>
+
+    <script>
+      function saveSelectionAndContinue() {
+        const selectedFood = document.querySelector('input[name="food"]:checked');
+        if (selectedFood) {
+          localStorage.setItem("selectedFood", selectedFood.value); // Save to localStorage
+          window.location.href = "dessert.html"; // Redirect to the next page
+        } else {
+          alert("SELECT YUR YUM YUMMM !!!!");
+        }
+      }
+    </script>
+
+  </body>
+</html>

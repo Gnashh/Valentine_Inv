@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activities</title>
+    <link rel="stylesheet" href="css/activities.css" />
+  </head>
+  <body>
+    <div id="activityquestion"><b>What are we doing after?</b></div>
+    <div class="activities-selection">
+      <div class="activity-item">
+        <img src="activities/art.jpg" alt="Art stuff" />
+        <label
+          ><input
+            type="radio"
+            name="activities"
+            value="Art stuff"
+          />Art stuff</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/nonton.jpg" alt="arcade" />
+        <label
+          ><input
+            type="radio"
+            name="activities"
+            value="moviee"
+          />Moviee</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/boardgame.jpg" alt="cinema" />
+        <label
+          ><input
+            type="radio"
+            name="activities"
+            value="boardgame"
+          />Boardgames</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/brick.jpg" alt="ceramics" />
+        <label
+          ><input
+            type="radio"
+            name="activities"
+            value="lego n cafe"
+          />Legos n cafe</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/claw.jpg" alt="ceramics" />
+        <label
+          ><input
+            type="radio"
+            name="activities"
+            value="Claw machine"
+          />Claw machines ?</label
+        >
+      </div>
+    </div>
+    <button class="button" onclick="saveSelectionAndContinue(); downloadAnswers();">
+      Last page ... 
+    </button>
+
+    <script>
+      function saveSelectionAndContinue() {
+        const selectedActivity = document.querySelector('input[name="activities"]:checked');
+        if (selectedActivity) {
+          localStorage.setItem("selectedActivities", selectedActivity.value); // Save correctly
+          window.location.href = "lastpage.html"; // Redirect
+        } else {
+          alert("WE GOTTA DO SOMETHING !!");
+        }
+      }
+
+      function downloadAnswers() {
+        const answers = {
+          food: localStorage.getItem("selectedFood"),
+          dessert: localStorage.getItem("selectedDessert"),
+          activities: localStorage.getItem("selectedActivities"),
+        };
+
+    
+        const textContent = JSON.stringify(answers, null, 2); // Convert to formatted JSON
+        const blob = new Blob([textContent], { type: "application/json" });
+        
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "send me this pleaseee.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+  
+
+    </script>
+
+  </body>
+</html>
